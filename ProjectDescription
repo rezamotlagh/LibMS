@@ -1,0 +1,201 @@
+Create a library management application on the Command Line which will follow the following protocol.
+
+User is first presented the following options:
+
+MAIN:
+Welcome to the GCIT Library Management System. Which category of a user are you
+
+1)	Librarian
+2)	Administrator
+3)	Borrower
+
+<take input>
+
+Based on what the user selects, the following prompts will appear to fit his role:
+
+LIBRARIAN
+
+LIB1:
+1)	Enter Branch you manage
+2)	Quite to previous (should take you menu MAIN)
+
+<take input>
+
+For Option 1, Give a list of Library branches using the names or locations like this:
+
+LIB2:
+1)	University Library, Boston 
+2)	State Library, New York
+3)	Federal Library, Washington DC
+4)	County Library, McLean VA 
+5)	Quit to previous (should take you menu LIB1)
+
+<take input>
+
+The user will only pick the number in the above list and you should figure out which branch he is referring.
+
+Based on the selection, the next list would be:
+LIB3:
+1)	Update the details of the Library 
+2)	Add copies of Book to the Branch
+3)	Quit to previous (should take you menu LIB2)
+
+<take input>
+
+Option 1 should update library_branch table for the branch he had picked before. This should be like:
+
+You have chosen to update the Branch with Branch Id: X and Branch Name: ABCD. Enter ‘quit’ at any prompt to cancel operation.
+
+Please enter new branch name or enter N/A for no change:
+<take input>
+Please enter new branch address or enter N/A for no change:
+<take input>
+
+Then update the values for this branch and say successfully updated. Then go back to menu LIB3, to start over again.
+
+Option 2 should give further options like this:
+
+Pick the Book you want to add copies of, to your branch:
+1)	Lost Tribe by Sidney Sheldon
+2)	The Haunting by Stepehen King
+3)	Microtrends by Mark Penn
+4)	Quit to cancel operation
+
+<take input>
+
+Existing number of copies: N (if none show zero)
+
+Enter new number of copies:
+
+<take input>
+
+Then you should update the book_copies table with the new values. Then take the user back to LIB3.
+
+BORROWER
+
+Enter the your Card Number:
+<take input>
+
+Don’t let borrower to proceed until he gives valid card number.
+
+BORR1:
+1)	Check out a book
+2)	Return a Book
+3)	Quit to Previous (should take you menu MAIN)
+
+Option 1 should show the following options
+
+Pick the Branch you want to check out from:
+1)	University Library, Boston 
+2)	State Library, New York
+3)	Federal Library, Washington DC
+4)	County Library, McLean VA 
+5)	Quit to previous (should take you menu BORR1)
+
+Pick the Book you want to check out (make sure you only show books that have atleast one copy in BOOK_COPIES in the branch picked)
+
+1)	Lost Tribe by Sidney Sheldon
+2)	The Haunting by Stepehen King
+3)	Microtrends by Mark Penn
+4)	Quit to cancel operation (should take you menu BORR1)
+
+Then add entry into book_loans, date out should be today’s date, due date should be one week from today’s date.
+
+Implement the return book functionality the same way as above.
+
+
+Also implement the following ADMINISTRATOR functions:
+
+1)	Add/Update/Delete Book and Author
+2)	Add/Update/Delete Publishers
+3)	Add/Update/Delete Library Branches
+4)	Add/Update/Delete Borrowers
+5)	Over-ride Due Date for a Book Loan
+
+
+Classes:
+1.	Admin
+  Fields:
+    •	Name
+  Methods
+    •	Update book/author
+      o	Adding a book and author
+      o	Deleting abook and author
+      o	Update the book and/or author details
+      o	Explicitly affected table/s:
+        	Book and/or Author
+    •	Update publishers
+      o	Adding a publisher
+      o	Deleting a publisher
+      o	Update publisher info
+      o	Explicitly affected table/s:
+        	Publisher
+    •	Update Library branches
+      o	Adding a branch
+      o	Deleting a branch
+      o	Updating a branch
+      o	Explicitly affected table/s:
+        	Library Branch
+    •	Update Borrowers
+      o	Adding a borrower
+      o	Deleting a borrower
+      o	Update borrowers details
+      o	Explicitly affected table/s:
+        	Borrower
+    •	Override DueDate
+      o	Modify the value of due date
+      o	Explicitly affected table/s:
+        	Book Loans
+2.Borrower
+	Fields
+    •	cardNo
+  Methods
+    •	CheckOut
+      o	Checks if he has already taken this book 
+      o	Adds loans details book to loans table
+      o	Sets the pending status as 1
+      o	Decrements the no of copies in the book copies table
+      o	Explicitly affected table/s:
+        	Book Loans, book copies
+    •	Return
+      o	Loads all the “pending” books by this borrower
+      o	Selected books are check as “returned” no of copies in the book copies table are incremented by 1
+      o	Explicitly affected table/s:
+        	Book loans, book copies
+3. Librarian
+	Fields
+    •	Branch
+  Methods
+    •	Update Branch Details
+      o	Updates the table with new details
+      o	Explicitly affected table/s:
+        	branch
+    •	Add book copies
+      o	Loads the book names
+      o	Updates the number of copies of the selected book
+      o	Explicitly affected table/s:
+        	Book copies
+
+Description:
+
+I got this project from my friend Akbar with the aim to warm up and get ready for programming again. I was given these specifications and database schema.
+
+This was initially designed to be a terminal-based application but I decided to first write it as a terminal application and later upgrade it to a web application.  
+
+I have written the initial application, designed a simple website and now it’s in the phase to write servlets and convert the Java and HTML code to JSP.
+
+Since I am new to software development practices, I must work on how my code should be structured. For example, in a “professional” point of view and from an experienced software developer perspective, where and how I should write the servlets well-structured and how packages must be specified.
+
+There are four main packages in ‘src’ package: dao, domain, service and view.
+
+In “domain” package, base classes for each role are created, mainly getter and setter methods.
+
+In “dao” package, classes with basic database access methods are implemented. These include methods related to basic CRUD sql operations and are used to create objects from database records and vice-versa.
+
+“Service” package include classes for manipulating more advanced operations. These classes contain methods that typically make use of methods in domain and dao packages in order to perform compound operations (queries) e.g. getting book info and check if the book is available.
+
+Finally, “view” package mainly includes classes and methods for interact with the user. It shows how flow should be directed from the user interface to the database and return.
+It also includes additional service files such as JDBC singleton class etc.
+
+Deadline: From what has been done so far and what has remained, it takes 15 days to finish it without testing. Unfortunately, testing also takes some time( like 10 days more) since I’m new to it. So the deadline without any testing can be set to December 8th.
+
