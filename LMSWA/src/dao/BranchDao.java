@@ -21,9 +21,11 @@ public class BranchDao implements DAOInterface{
 	{
 		try
 		{
+			System.out.println("One step closer.");
 			Connection con=JDBCMysqlConnection.getConnection();
 			String query="update tbl_library_branch set branchName='"+branch.getBranchName()+"', branchAddress='"+branch.getBranchAddress()+"' where branchId="+branch.getBranchId();
 			PreparedStatement st = con.prepareStatement(query);
+			System.out.println(query);
 			st.executeUpdate(query);
 		}
 		catch(SQLException e)

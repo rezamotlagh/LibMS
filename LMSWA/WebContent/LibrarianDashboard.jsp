@@ -9,11 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<style type="text/css">
-    body{
-        padding-top: 70px;
-    }
-</style>
+<link rel="stylesheet" href="pageStyles.css">
 </head>
 <body>
 <nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
@@ -41,14 +37,14 @@
 <div class="container">
     <div class="jumbotron">
        
-        <p>Hello Librarian!<br/> Welcome to the branch <%out.println(request.getParameter("branchMenu")); %> </p>
+        <p>Hello Librarian!<br/> Welcome to <%String branchName=request.getParameter("branchMenu"); out.println(branchName);  session.setAttribute("branchName",branchName);%> </p>
        
     </div>
     <div class="row">
         
         <div class="col-xs-12">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                    <li class="active"><a data-toggle="tab" href="#Home">Home</a></li>
                     <li><a data-toggle="tab" href="#updateLibDetails">Update Details of the Branch</a></li>
                     <li><a data-toggle="tab" href="#addBookCopies">Add Book copies</a></li>
                 </ul>
@@ -62,14 +58,14 @@
                           <div id="updateLibDetails" class="tab-pane fade">
                             <h3>Update Details of the Branch</h3>
                               <p>Enter new details or leave any of the fields for no change</p>
-                            <form>
+                            <form method=post action="UpdateLibraryDetails">
                               <div class="form-group">
                                 <label for="branchName">Enter a new branch name:</label>
-                                <input type="text" class="form-control" id="branchName">
+                                <input type="text" class="form-control" id="branchName" name="branchName">
                               </div>
                               <div class="form-group">
                                 <label for="pwd">Enter a new branch address:</label>
-                                <input type="text" class="form-control" id="branchAddress">
+                                <input type="text" class="form-control" id="branchAddress" name="branchAddress">
                               </div>
                               
                               <button type="submit" class="btn btn-default">Apply</button>

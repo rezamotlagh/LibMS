@@ -9,11 +9,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<style type="text/css">
-    body{
-        padding-top: 70px;
-    }
-</style>
+<link rel="stylesheet" href="pageStyles.css">
 </head>
 <body>
 <nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
@@ -40,7 +36,7 @@
 </nav>
 <div class="container">
     <div class="jumbotron">
-        <h1>LMS</h1>
+            <h1>LMS</h1>
         <p>A system to manage and maintain our Library </p>
         
     </div>
@@ -70,10 +66,10 @@
             <div class="form-group">
                         <select class="form-control" name="branchMenu" id="branchMenu">
                             <option value="" disabled="disabled">Select a branch</option>
-                            <option value="University Library,Boston">University Library, Boston</option>
-                            <option value="State Library,New York">State Library, New York</option>
-                            <option value="Federal Library, Washington DC">Federal Library, Washington DC</option>
-                            <option value="County Library, McLean VA">County Library, McLean VA</option>
+                            <option value="1.University Library,Boston">University Library, Boston</option>
+                            <option value="2.State Library,New York">State Library, New York</option>
+                            <option value="3.Federal Library, Washington DC">Federal Library, Washington DC</option>
+                            <option value="4.County Library, McLean VA">County Library, McLean VA</option>
                           </select>
                             
                    

@@ -3,21 +3,29 @@ import  domain.*;
 import  java.io.*;
 import  java.util.ArrayList;
 import  dao.*;
-
 public class LibrarianService 
 {
+	public void updateBranchDetails(int id,String name,String address)
+	{
+		System.out.println(id+","+name+","+address);
+		BranchDao branchDao=new BranchDao();
+		Branch branch=new Branch();
+		branch.setBranchName(name);
+		branch.setBranchAddress(address);
+		branch.setBranchId(id);
+		branchDao.updateBranch(branch);
+	}
+	
 public void manageBranch(Branch branch)
 {
-	
 	BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-	int choice;
-	System.out.println("Welcome to the Branch : "+branch.getBranchName()+" Menu");
-	while(true)
-	{
+	
+		int choice=1;
+		
 		System.out.println("Please select an option: \n1.Update the details of the branch\n2.Change number of copies of book to the branch\n3.Exit");
 		try
 		{
-			choice=Integer.parseInt(br.readLine());
+			
 			switch(choice)
 			{
 			case 1: 
@@ -104,4 +112,4 @@ public void manageBranch(Branch branch)
 	}
 }
 
-}
+
