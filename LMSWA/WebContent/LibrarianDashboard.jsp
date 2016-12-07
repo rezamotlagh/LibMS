@@ -10,6 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="pageStyles.css">
+<%@ page import="service.* , java.util.ArrayList , domain.* ,dao.*"  %>
 </head>
 <body>
 <nav id="myNavbar" class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
@@ -73,7 +74,43 @@
                           </div>
                           <div id="addBookCopies" class="tab-pane fade">
                             <h3>Add Book Copies</h3>
-                            <p>Select a Book</p>
+                            <p>Select a Book:</p>
+                            <div class="table-responsive">
+  							<table class="table table-striped">
+                            <tr>
+                                	<td>Title</td>
+                                	<td>Author</td>
+                                	<td>Publisher</td>
+                                	<td>Copies</td>
+                                	</tr>
+                            <%
+                                int copiesCounter;
+                            	LibrarianService ls=new LibrarianService(); 
+                                ArrayList<Book> bookList= ls.loadBookInfo();
+                                BookCopies bookCopies=new BookCopies();
+    							BookCopiesDao bookCopiesDao=new BookCopiesDao();
+    							String[] splittedBranch=branchName.split("\\.");
+    							int branchId=Integer.parseInt(splittedBranch[0]);
+    							
+    							
+                                for(Book book : bookList)
+                                {
+                                	bookCopies=bookCopiesDao.findBookCopies(book.getBookId(),branchId);
+                                	if(bookCopies==null)
+        								copiesCounter=0;
+        							else
+        								copiesCounter=bookCopies.getNoOfCopies();
+                                	
+                                	%>
+                                	<tr>
+                                	<td><%=book.getTitle()%></td>
+                                	<td><%=book.getAuthor().getAuthorName()%></td>
+                                	<td><%=book.getPublisher().getPublisherName() %></td>
+                                	<td><%=copiesCounter%></td>
+                                	</tr>
+                                	<%}
+                              %>
+                            </table></div>
                           </div>
                         </div>
         </div>

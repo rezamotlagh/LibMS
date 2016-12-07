@@ -15,6 +15,13 @@ public class LibrarianService
 		branch.setBranchId(id);
 		branchDao.updateBranch(branch);
 	}
+	public ArrayList<Book> loadBookInfo()
+	{
+		BookDao bookDao=new BookDao();
+		ArrayList<Book> bookList=new ArrayList<Book>();
+		bookList= bookDao.findBook();
+		return bookList;
+	}
 	
 public void manageBranch(Branch branch)
 {

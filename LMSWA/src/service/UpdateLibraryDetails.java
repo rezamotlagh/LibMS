@@ -41,6 +41,7 @@ public class UpdateLibraryDetails extends HttpServlet {
 	String name=request.getParameter("branchName");
 	String address=request.getParameter("branchAddress");
 	String branch=(String) request.getSession().getAttribute("branchName");
+
 	System.out.println(branch);
 	try
 	{
